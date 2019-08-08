@@ -1,0 +1,37 @@
+status:
+  in-progress: '&b&lACTIVE'
+  reward-available: '&e&lCLICK TO CLAIM'
+  completed: '&a&lCOMPLETED'
+
+challenges:
+  1:
+    type: 'player_kills'
+    challenge-id: 'week_1-challenge_1'
+    active:
+      element: ''
+      data-value: 0
+    completion-requirements:
+      total: 10
+      payout: 50
+    gui:
+      slot: 0
+      item:
+        material: 'diamond_sword'
+        data-value: 0
+      name: '&cPlayer Kills'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eKill 10 players'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'

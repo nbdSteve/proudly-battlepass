@@ -1,0 +1,6 @@
+total-coal-challenge-clusters: 1
+
+timers:
+  cluster-1: 120
+  cluster-2: 240
+  cluster-3: 360

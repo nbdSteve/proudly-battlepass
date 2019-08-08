@@ -1,0 +1,8 @@
+name: BattlePass
+version: 0.0.1-BETA
+main: dev.nuer.proudly.BattlePass
+api-version: 1.13
+prefix: BattlePass
+authors: [Nuer]
+description: BattlePass plugin developed for Hytheria
+website: https://nuer.dev
