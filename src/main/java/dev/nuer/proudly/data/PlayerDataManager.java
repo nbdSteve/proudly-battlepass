@@ -1,6 +1,6 @@
 package dev.nuer.proudly.data;
 
-import dev.nuer.pp.playerData.utils.PlayerFileUtil;
+import dev.nuer.proudly.data.utils.PlayerFileUtil;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -11,9 +11,9 @@ public class PlayerDataManager {
         return new PlayerFileUtil("player-data" + File.separator + player.getUniqueId().toString() + ".yml");
     }
 
-    public static void giveCopy(Player player) {
+    public static void makeGold(Player player) {
         PlayerFileUtil pfu = getPlayerFile(player);
-        pfu.get().set("pass-info.valid-copy", true);
+        pfu.get().set("pass-info.gold-pass", true);
         pfu.save();
     }
 
@@ -22,6 +22,6 @@ public class PlayerDataManager {
     }
 
     public static boolean hasCopy(Player player) {
-        return getPlayerFile(player).get().getBoolean("pass-info.valid-copy");
+        return getPlayerFile(player).get().getBoolean("pass-info.gold-pass");
     }
 }

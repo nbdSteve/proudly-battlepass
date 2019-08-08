@@ -1,6 +1,6 @@
 package dev.nuer.proudly.enable;
 
-import dev.nuer.pp.utils.YamlFileUtil;
+import dev.nuer.proudly.utils.YamlFileUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 

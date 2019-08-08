@@ -1,5 +1,10 @@
 package dev.nuer.proudly.challenges;
 
+import dev.nuer.proudly.data.PlayerDataManager;
+import dev.nuer.proudly.enable.ClusterManager;
+import dev.nuer.proudly.points.PlayerPointManager;
+import org.bukkit.entity.Player;
+
 public class Challenge {
     private int cluster;
     private ChallengeType type;
@@ -8,8 +13,9 @@ public class Challenge {
     private short data;
     private int total;
     private int payout;
+    private ClusterType clusterType;
 
-    public Challenge(int cluster, ChallengeType type, String ID, String element, short data, int total, int payout) {
+    public Challenge(int cluster, ChallengeType type, String ID, String element, short data, int total, int payout, ClusterType clusterType) {
         this.cluster = cluster;
         this.type = type;
         this.ID = ID;
@@ -17,6 +23,15 @@ public class Challenge {
         this.data = data;
         this.total = total;
         this.payout = payout;
+        this.clusterType = clusterType;
+    }
+
+    public int getProgress(Player player) {
+        if (PlayerDataManager.getPlayerFile(player).get().get())
+    }
+
+    public String getClusterType(ClusterType clusterType) {
+        if (clusterType.equals(ClusterType.COAL)) return ""
     }
 
     public int getCluster() {

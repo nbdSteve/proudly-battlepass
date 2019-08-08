@@ -1,11 +1,9 @@
 package dev.nuer.proudly.data.utils;
 
-import dev.nuer.pp.PassPlus;
-import dev.nuer.pp.challenges.Challenge;
-import dev.nuer.pp.challenges.ChallengeWeek;
-import dev.nuer.pp.enable.WeeklyChallengeManager;
 import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.Challenge;
+import dev.nuer.proudly.challenges.Cluster;
+import dev.nuer.proudly.enable.ClusterManager;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -34,29 +32,43 @@ public class PlayerFileUtil {
         if (!file.exists()) {
             setupPlayerFileDefaults(config);
         }
-        setupChallengeWeeks();
+        setupCoalClusters();
+        setupGoldClusters();
         save();
     }
 
     private void setupPlayerFileDefaults(YamlConfiguration config) {
         //Set defaults for the information about the players tiers and currency
         config.createSection("pass-info");
-        config.set("pass-info.gold", false);
+        config.set("pass-info.gold-pass", false);
         config.set("pass-info.tier", 0);
         config.set("pass-info.points", 0);
         config.set("pass-info.challenges-completed", 0);
         //Set defaults for the information about the players current & completed challenges
-        config.createSection("pass-challenges");
+        config.createSection("coal-challenges");
+        config.createSection("gold-challenges");
         //Send a nice message
         BattlePass.log.info("Successfully created a new player-data file: " + fileName + ", actively creating / setting defaults.");
     }
 
-    private void setupChallengeWeeks() {
-        for (ChallengeWeek challengeWeek : WeeklyChallengeManager.weeks.values()) {
-            if (challengeWeek.isUnlocked()) {
-                for (Challenge challenge : challengeWeek.challenges) {
-                    if (config.get("pass-challenges.week-" + challengeWeek.getWeek() + "." + challenge.getId()) == null) {
-                        config.set("pass-challenges.week-" + challengeWeek.getWeek() + "." + challenge.getId(), 0.0);
+    public void setupCoalClusters() {
+        for (Cluster cluster : ClusterManager.coalClusters.values()) {
+            if (cluster.isUnlocked()) {
+                for (Challenge challenge : cluster.getChallenges()) {
+                    if (config.get("coal-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster()) == null) {
+                        config.set("coal-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster(), 0);
+                    }
+                }
+            }
+        }
+    }
+
+    public void setupGoldClusters() {
+        for (Cluster cluster : ClusterManager.coalClusters.values()) {
+            if (cluster.isUnlocked()) {
+                for (Challenge challenge : cluster.getChallenges()) {
+                    if (config.get("gold-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster()) == null) {
+                        config.set("gold-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster(), 0);
                     }
                 }
             }

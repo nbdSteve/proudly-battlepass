@@ -1,11 +1,10 @@
 package dev.nuer.proudly.data.listeners;
 
-import dev.nuer.pp.PassPlus;
-import dev.nuer.pp.experience.PlayerExperienceManager;
-import dev.nuer.pp.tiers.PlayerTierManager;
 import dev.nuer.proudly.BattlePass;
-import dev.nuer.proudly.enable.FileManager;
 import dev.nuer.proudly.data.PlayerDataManager;
+import dev.nuer.proudly.enable.FileManager;
+import dev.nuer.proudly.points.PlayerPointManager;
+import dev.nuer.proudly.tiers.PlayerTierManager;
 import dev.nuer.proudly.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -23,18 +22,16 @@ public class DataCreationOnJoin implements Listener {
         if (!FileManager.get("config").getBoolean("enable-welcome-message")) return;
         Bukkit.getScheduler().runTaskLater(BattlePass.instance, () -> {
             if (PlayerDataManager.hasCopy(event.getPlayer())) {
-                MessageUtil.message("messages", "player-welcome.active-copy", event.getPlayer(),
+                MessageUtil.message("messages", "player-welcome.gold-pass", event.getPlayer(),
                         "{player}", event.getPlayer().getName(),
                         "{tier}", String.valueOf(PlayerTierManager.getTier(event.getPlayer())),
-                        "{experience-name}", FileManager.get("config").getString("experience-name"),
-                        "{exp}", BattlePass.df.format(PlayerExperienceManager.getExperience(event.getPlayer())),
+                        "{exp}", BattlePass.df.format(PlayerPointManager.getPoints(event.getPlayer())),
                         "{challenges-completed}", String.valueOf(PlayerDataManager.getChallengesCompleted(event.getPlayer())));
             } else {
-                MessageUtil.message("messages", "player-welcome.no-copy", event.getPlayer(),
+                MessageUtil.message("messages", "player-welcome.coal-pass", event.getPlayer(),
                         "{player}", event.getPlayer().getName(),
                         "{tier}", String.valueOf(PlayerTierManager.getTier(event.getPlayer())),
-                        "{experience-name}", FileManager.get("config").getString("experience-name"),
-                        "{exp}", BattlePass.df.format(PlayerExperienceManager.getExperience(event.getPlayer())),
+                        "{exp}", BattlePass.df.format(PlayerPointManager.getPoints(event.getPlayer())),
                         "{challenges-completed}", String.valueOf(PlayerDataManager.getChallengesCompleted(event.getPlayer())));
             }
         }, 10L);

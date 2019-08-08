@@ -1,13 +1,6 @@
 package dev.nuer.proudly.enable;
 
-import dev.nuer.pp.challenges.listeners.BrewChallengeListener;
-import dev.nuer.pp.challenges.listeners.ChallengeListener;
-import dev.nuer.pp.challenges.listeners.ChallengeWeekUnlockListener;
-import dev.nuer.pp.challenges.listeners.PlayerChallengeCompletedListener;
-import dev.nuer.pp.experience.listeners.ExperienceTierListener;
-import dev.nuer.pp.gui.listener.GuiClickListener;
-import dev.nuer.pp.playerData.listeners.DataCreationOnJoin;
-import dev.nuer.pp.tiers.listeners.PlayerTierListener;
+import dev.nuer.proudly.BattlePass;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -24,14 +17,20 @@ public class SetupManager {
      * @param fileManager FileManager, the plugins file manager
      */
     public static void setupFiles(FileManager fileManager) {
-        fileManager.add("config", "pass+.yml");
+        //General files
+        fileManager.add("config", "proudly-pass.yml");
         fileManager.add("messages", "messages.yml");
-        fileManager.add("tier_config", "tiers" + File.separator + "tier-config.yml");
-        fileManager.add("tier_gui", "tiers" + File.separator + "tier-gui.yml");
-        fileManager.add("challenge_config", "challenges" + File.separator + "challenge-config.yml");
-        fileManager.add("unlock_timers", "challenges" + File.separator + "unlock-timers.yml");
-        //Load the week configuration for the challenges.
-        WeeklyChallengeManager.load(fileManager);
+        //Coal pass config
+        fileManager.add("coal_data", "coal-pass" + File.separator + "data.yml");
+        fileManager.add("coal_tiers", "coal-pass" + File.separator + "tiers.yml");
+        ClusterManager.loadCoalClusters(fileManager);
+        //Gold pass config
+        fileManager.add("gold_data", "gold-pass" + File.separator + "data.yml");
+        fileManager.add("gold_tiers", "gold-pass" + File.separator + "tiers.yml");
+        ClusterManager.loadGoldClusters(fileManager);
+    }
+
+    public static void registerCommands(BattlePass instance) {
     }
 
     /**
@@ -41,13 +40,13 @@ public class SetupManager {
      */
     public static void registerEvents(Plugin instance) {
         PluginManager pm = instance.getServer().getPluginManager();
-        pm.registerEvents(new DataCreationOnJoin(), instance);
-        pm.registerEvents(new PlayerTierListener(), instance);
-        pm.registerEvents(new GuiClickListener(), instance);
-        pm.registerEvents(new ExperienceTierListener(), instance);
-        pm.registerEvents(new ChallengeWeekUnlockListener(), instance);
-        pm.registerEvents(new PlayerChallengeCompletedListener(), instance);
-        pm.registerEvents(new ChallengeListener(), instance);
-        pm.registerEvents(new BrewChallengeListener(), instance);
+//        pm.registerEvents(new DataCreationOnJoin(), instance);
+//        pm.registerEvents(new PlayerTierListener(), instance);
+//        pm.registerEvents(new GuiClickListener(), instance);
+//        pm.registerEvents(new ExperienceTierListener(), instance);
+//        pm.registerEvents(new ChallengeWeekUnlockListener(), instance);
+//        pm.registerEvents(new PlayerChallengeCompletedListener(), instance);
+//        pm.registerEvents(new ChallengeListener(), instance);
+//        pm.registerEvents(new BrewChallengeListener(), instance);
     }
 }
