@@ -1,11 +1,11 @@
 package dev.nuer.proudly.tiers.listeners;
 
-import dev.nuer.pp.PassPlus;
-import dev.nuer.pp.enable.FileManager;
-import dev.nuer.pp.playerData.PlayerDataManager;
-import dev.nuer.pp.tiers.events.PlayerTierUpEvent;
-import dev.nuer.pp.utils.MessageUtil;
-import dev.nuer.pp.utils.TierCommandUtil;
+import dev.nuer.proudly.BattlePass;
+import dev.nuer.proudly.data.PlayerDataManager;
+import dev.nuer.proudly.enable.FileManager;
+import dev.nuer.proudly.tiers.events.PlayerTierUpEvent;
+import dev.nuer.proudly.utils.MessageUtil;
+import dev.nuer.proudly.utils.TierCommandUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
@@ -16,11 +16,11 @@ public class PlayerTierListener implements Listener {
 
     @EventHandler
     public void tierUp(PlayerTierUpEvent event) {
-        //Run the commands for the free tier
-        TierCommandUtil.execute("tier_config", event.getNewPlayerTier() + ".rewards.free.commands", event.getPlayer());
-        //If they have a copy of the battlepass run premium commands
+        //Run the commands for the coal tier
+        TierCommandUtil.execute("tier_config", event.getNewPlayerTier() + ".rewards.coal.commands", event.getPlayer());
+        //If they have a copy of the battlepass run gold commands
         if (PlayerDataManager.hasCopy(event.getPlayer())) {
-            TierCommandUtil.execute("tier_config", event.getNewPlayerTier() + ".rewards.premium.commands", event.getPlayer());
+            TierCommandUtil.execute("tier_config", event.getNewPlayerTier() + ".rewards.gold.commands", event.getPlayer());
         }
         //Send the player a tier message
         MessageUtil.message("tier_config", event.getNewPlayerTier() + ".rewards.message", event.getPlayer());
@@ -33,7 +33,7 @@ public class PlayerTierListener implements Listener {
         }
         //Shoot a firework
         if (FileManager.get("tier_config").getBoolean("tier-up-notification.firework.enabled")) {
-            Bukkit.getScheduler().runTask(PassPlus.instance, () -> {
+            Bukkit.getScheduler().runTask(BattlePass.instance, () -> {
                 event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.FIREWORK);
             });
         }

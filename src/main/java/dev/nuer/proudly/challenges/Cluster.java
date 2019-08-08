@@ -1,6 +1,7 @@
 package dev.nuer.proudly.challenges;
 
 import dev.nuer.proudly.BattlePass;
+import dev.nuer.proudly.challenges.events.ChallengeClusterUnlockEvent;
 import dev.nuer.proudly.enable.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,9 +29,9 @@ public class Cluster {
         String cType = clusterType(this.type);
         BattlePass.log.info("Loading challenges for " + cType + "cluster_" + this.cluster);
         for (int i = 1; i <= 100; i++) {
-            if (FileManager.get(cType + "challenge_cluster_" + this.cluster).getString("challenge." + i + ".challenge-id") == null)
+            if (FileManager.get(cType + "cluster_" + this.cluster).getString("challenge." + i + ".challenge-id") == null)
                 break;
-            YamlConfiguration config = FileManager.get(cType + "challenge_cluster_" + this.cluster);
+            YamlConfiguration config = FileManager.get(cType + "cluster_" + this.cluster);
             Challenge challenge = new Challenge(cluster,
                     ChallengeType.valueOf(config.getString("challenge." + i + ".type").toUpperCase()),
                     config.getString("challenge." + i + ".challenge-id"),
@@ -45,20 +46,21 @@ public class Cluster {
     public void countdown() {
         //Check to make sure that the countdown should run
         String cType = clusterType(this.type);
+        if (isUnlocked()) return;
+        if (!FileManager.get("config").getBoolean("do-cluster-countdowns")) return;
         if (FileManager.get(cType + "data").getInt("timers.cluster-" + this.cluster) <= 0) {
-            setUnlocked(true);
+            Bukkit.getPluginManager().callEvent(new ChallengeClusterUnlockEvent(this));
+            this.counterTaskId.cancel();
             return;
         }
-        if (isUnlocked()) return;
-        if (!FileManager.get("config").getBoolean("cluster-countdowns.enabled")) return;
         //Do the countdown timer
-        this.counterTaskId = Bukkit.getScheduler().runTaskTimer(BattlePass.instance, () -> {
+        this.counterTaskId = Bukkit.getScheduler().runTaskTimerAsynchronously(BattlePass.instance, () -> {
             //Check that the week is still locked
             if (unlocked) {
                 //Fire the custom event
-//                Bukkit.getPluginManager().callEvent(new ChallengeWeekUnlockEvent(this));
+                Bukkit.getPluginManager().callEvent(new ChallengeClusterUnlockEvent(this));
                 //Cancel the task
-                counterTaskId.cancel();
+                this.counterTaskId.cancel();
             }
             //Store the time remaining
             int timeRemaining = FileManager.get(cType + "data").getInt("timers.cluster-" + this.cluster) - 1;
@@ -68,7 +70,7 @@ public class Cluster {
                 FileManager.save(cType + "data");
             } else {
                 //Fire the custom event
-//                Bukkit.getPluginManager().callEvent(new ChallengeWeekUnlockEvent(this));
+                Bukkit.getPluginManager().callEvent(new ChallengeClusterUnlockEvent(this));
                 //Cancel the task
                 this.counterTaskId.cancel();
             }
@@ -100,7 +102,7 @@ public class Cluster {
         this.unlocked = unlocked;
     }
 
-    public int getCluster() {
+    public int getClusterID() {
         return cluster;
     }
 

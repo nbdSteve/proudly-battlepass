@@ -1,9 +1,12 @@
 package dev.nuer.proudly.challenges;
 
+import dev.nuer.proudly.challenges.events.PlayerChallengeCompletionEvent;
 import dev.nuer.proudly.data.PlayerDataManager;
-import dev.nuer.proudly.enable.ClusterManager;
-import dev.nuer.proudly.points.PlayerPointManager;
+import dev.nuer.proudly.data.utils.PlayerFileUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import static dev.nuer.proudly.data.PlayerDataManager.getPlayerFile;
 
 public class Challenge {
     private int cluster;
@@ -27,11 +30,36 @@ public class Challenge {
     }
 
     public int getProgress(Player player) {
-        if (PlayerDataManager.getPlayerFile(player).get().get())
+        String cType = getClusterTypeString(this.clusterType);
+        if (getPlayerFile(player).get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
+            return 0;
+        return getPlayerFile(player).get().getInt(cType + "challenges.cluster-" + cluster + "." + getID());
     }
 
-    public String getClusterType(ClusterType clusterType) {
-        if (clusterType.equals(ClusterType.COAL)) return ""
+    public void progress(Player player) {
+        PlayerFileUtil pfu = getPlayerFile(player);
+        String cType = getClusterTypeString(this.clusterType);
+        if (getProgress(player) + 1 >= getTotal() - 0.1) {
+            Bukkit.getPluginManager().callEvent(new PlayerChallengeCompletionEvent(player, this));
+        } else {
+            pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), getProgress(player) + 1);
+            pfu.save();
+        }
+    }
+
+    public void setComplete(Player player) {
+        PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
+        String cType = getClusterTypeString(this.clusterType);
+        if (pfu.get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
+            return;
+        pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), -1);
+        pfu.get().set("pass-info.challenges-completed", pfu.get().getInt("pass-info.challenges-completed") + 1);
+        pfu.save();
+    }
+
+    public String getClusterTypeString(ClusterType clusterType) {
+        if (clusterType.equals(ClusterType.COAL)) return "gold-";
+        return "coal-";
     }
 
     public int getCluster() {
@@ -88,5 +116,13 @@ public class Challenge {
 
     public void setPayout(int payout) {
         this.payout = payout;
+    }
+
+    public void setClusterType(ClusterType clusterType) {
+        this.clusterType = clusterType;
+    }
+
+    public ClusterType getClusterType() {
+        return clusterType;
     }
 }

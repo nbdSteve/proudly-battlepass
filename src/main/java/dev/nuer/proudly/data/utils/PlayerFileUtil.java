@@ -55,8 +55,8 @@ public class PlayerFileUtil {
         for (Cluster cluster : ClusterManager.coalClusters.values()) {
             if (cluster.isUnlocked()) {
                 for (Challenge challenge : cluster.getChallenges()) {
-                    if (config.get("coal-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster()) == null) {
-                        config.set("coal-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster(), 0);
+                    if (config.get("coal-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster()) == null) {
+                        config.set("coal-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster(), 0);
                     }
                 }
             }
@@ -67,8 +67,8 @@ public class PlayerFileUtil {
         for (Cluster cluster : ClusterManager.coalClusters.values()) {
             if (cluster.isUnlocked()) {
                 for (Challenge challenge : cluster.getChallenges()) {
-                    if (config.get("gold-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster()) == null) {
-                        config.set("gold-challenges.cluster-" + cluster.getCluster() + "." + challenge.getCluster(), 0);
+                    if (config.get("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster()) == null) {
+                        config.set("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster(), 0);
                     }
                 }
             }

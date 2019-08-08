@@ -1,1 +1,33 @@
-cluster-countdowns: enabled
+do-cluster-countdowns: true
+challenge-cluster-unlock-broadcast:
+  enabled: true
+  message:
+    - '2'
+
+gold-pass:
+  completion-notification:
+    message:
+      enabled: true
+      text:
+        - '&7'
+    sound:
+      enabled: true
+      type: 'level_up'
+      volume: 1
+      pitch: 1
+    firework:
+      enabled: true
+
+coal-pass:
+  completion-notification:
+    message:
+      enabled: true
+      text:
+        - '&7'
+    sound:
+      enabled: true
+      type: 'level_up'
+      volume: 1
+      pitch: 1
+    firework:
+      enabled: true
