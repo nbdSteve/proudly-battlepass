@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="battlepass">
+    <output-path>$USER_HOME$/Desktop/minecraft/server stuff/Server Files/plugins</output-path>
+    <root id="archive" name="battlepass.jar">
+      <element id="module-output" name="BattlePass" />
+    </root>
+  </artifact>
+</component>
