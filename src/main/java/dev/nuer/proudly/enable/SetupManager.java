@@ -2,7 +2,9 @@ package dev.nuer.proudly.enable;
 
 import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.listeners.ChallengeClusterUnlockListener;
+import dev.nuer.proudly.challenges.listeners.ChallengeListener;
 import dev.nuer.proudly.challenges.listeners.PlayerChallengeCompletionListener;
+import dev.nuer.proudly.cmd.BpCmd;
 import dev.nuer.proudly.data.listeners.DataCreationOnJoin;
 import dev.nuer.proudly.points.listeners.PointTierListener;
 import dev.nuer.proudly.tiers.listeners.PlayerTierListener;
@@ -37,6 +39,7 @@ public class SetupManager {
     }
 
     public static void registerCommands(BattlePass instance) {
+        instance.getCommand("battlepass").setExecutor(new BpCmd());
     }
 
     /**
@@ -52,7 +55,7 @@ public class SetupManager {
         pm.registerEvents(new PointTierListener(), instance);
         pm.registerEvents(new ChallengeClusterUnlockListener(), instance);
         pm.registerEvents(new PlayerChallengeCompletionListener(), instance);
-//        pm.registerEvents(new ChallengeListener(), instance);
+        pm.registerEvents(new ChallengeListener(), instance);
 //        pm.registerEvents(new BrewChallengeListener(), instance);
     }
 }

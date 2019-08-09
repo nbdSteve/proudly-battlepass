@@ -6,3 +6,7 @@ prefix: BattlePass
 authors: [Nuer]
 description: BattlePass plugin developed for Hytheria
 website: https://nuer.dev
+commands:
+  battlepass:
+    usage: /<command>
+    aliases: [bp]

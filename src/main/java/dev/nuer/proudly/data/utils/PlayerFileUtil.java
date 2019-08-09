@@ -55,8 +55,8 @@ public class PlayerFileUtil {
         for (Cluster cluster : ClusterManager.coalClusters.values()) {
             if (cluster.isUnlocked()) {
                 for (Challenge challenge : cluster.getChallenges()) {
-                    if (config.get("coal-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster()) == null) {
-                        config.set("coal-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster(), 0);
+                    if (config.get("coal-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getID()) == null) {
+                        config.set("coal-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getID(), 0);
                     }
                 }
             }
@@ -64,11 +64,11 @@ public class PlayerFileUtil {
     }
 
     public void setupGoldClusters() {
-        for (Cluster cluster : ClusterManager.coalClusters.values()) {
+        for (Cluster cluster : ClusterManager.goldClusters.values()) {
             if (cluster.isUnlocked()) {
                 for (Challenge challenge : cluster.getChallenges()) {
-                    if (config.get("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster()) == null) {
-                        config.set("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getCluster(), 0);
+                    if (config.get("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getID()) == null) {
+                        config.set("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getID(), 0);
                     }
                 }
             }

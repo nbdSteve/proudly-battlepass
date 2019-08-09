@@ -2,6 +2,8 @@ package dev.nuer.proudly.points;
 
 import dev.nuer.proudly.data.PlayerDataManager;
 import dev.nuer.proudly.data.utils.PlayerFileUtil;
+import dev.nuer.proudly.points.events.PlayerPointIncreaseEvent;
+import dev.nuer.proudly.utils.CustomEventUtil;
 import org.bukkit.entity.Player;
 
 public class PlayerPointManager {
@@ -16,7 +18,7 @@ public class PlayerPointManager {
 
     public static void setPoints(Player player, int points) {
         if (points > getPoints(player)) {
-
+            CustomEventUtil.fire(new PlayerPointIncreaseEvent(player, points - getPoints(player), points));
         }
         //Set the new points
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);

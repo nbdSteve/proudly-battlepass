@@ -1,4 +1,5 @@
 do-cluster-countdowns: true
+
 challenge-cluster-unlock-broadcast:
   enabled: true
   message:

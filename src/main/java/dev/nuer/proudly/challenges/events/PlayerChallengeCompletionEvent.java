@@ -7,7 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class PlayerChallengeCompletionEvent extends Event implements Cancellable {
-    public static final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private Player player;
     private Challenge challenge;
     private boolean cancel;
@@ -34,7 +34,7 @@ public class PlayerChallengeCompletionEvent extends Event implements Cancellable
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlers;
     }
 
     public Player getPlayer() {

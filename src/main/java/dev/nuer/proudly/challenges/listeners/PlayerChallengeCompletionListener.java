@@ -18,7 +18,7 @@ public class PlayerChallengeCompletionListener implements Listener {
         event.getChallenge().setComplete(event.getPlayer());
         //Increase the number of points the player has
         PlayerPointManager.incrementPoints(event.getPlayer(), event.getChallenge().getPayout());
-        String cType = event.getChallenge().getClusterTypeString(event.getChallenge().getClusterType());
+        String cType = event.getChallenge().getClusterTypeString();
         //Send the player the message
         if (FileManager.get("config").getBoolean(cType + "pass.completion-notification.message.enabled")) {
             MessageUtil.message("config", cType + "pass.completion-notification.message.text", event.getPlayer(),

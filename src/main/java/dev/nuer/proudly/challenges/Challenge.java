@@ -1,12 +1,11 @@
 package dev.nuer.proudly.challenges;
 
+import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.events.PlayerChallengeCompletionEvent;
 import dev.nuer.proudly.data.PlayerDataManager;
 import dev.nuer.proudly.data.utils.PlayerFileUtil;
-import org.bukkit.Bukkit;
+import dev.nuer.proudly.utils.CustomEventUtil;
 import org.bukkit.entity.Player;
-
-import static dev.nuer.proudly.data.PlayerDataManager.getPlayerFile;
 
 public class Challenge {
     private int cluster;
@@ -30,17 +29,18 @@ public class Challenge {
     }
 
     public int getProgress(Player player) {
-        String cType = getClusterTypeString(this.clusterType);
-        if (getPlayerFile(player).get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
+        String cType = getClusterTypeString();
+        if (PlayerDataManager.getPlayerFile(player).get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
             return 0;
-        return getPlayerFile(player).get().getInt(cType + "challenges.cluster-" + cluster + "." + getID());
+        return PlayerDataManager.getPlayerFile(player).get().getInt(cType + "challenges.cluster-" + cluster + "." + getID());
     }
 
     public void progress(Player player) {
-        PlayerFileUtil pfu = getPlayerFile(player);
-        String cType = getClusterTypeString(this.clusterType);
+        PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
+        String cType = getClusterTypeString();
+        BattlePass.log.info(cType);
         if (getProgress(player) + 1 >= getTotal() - 0.1) {
-            Bukkit.getPluginManager().callEvent(new PlayerChallengeCompletionEvent(player, this));
+            CustomEventUtil.fire(new PlayerChallengeCompletionEvent(player, this));
         } else {
             pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), getProgress(player) + 1);
             pfu.save();
@@ -49,7 +49,7 @@ public class Challenge {
 
     public void setComplete(Player player) {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
-        String cType = getClusterTypeString(this.clusterType);
+        String cType = getClusterTypeString();
         if (pfu.get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
             return;
         pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), -1);
@@ -57,9 +57,9 @@ public class Challenge {
         pfu.save();
     }
 
-    public String getClusterTypeString(ClusterType clusterType) {
-        if (clusterType.equals(ClusterType.COAL)) return "gold-";
-        return "coal-";
+    public String getClusterTypeString() {
+        if (this.clusterType.equals(ClusterType.COAL)) return "coal-";
+        return "gold-";
     }
 
     public int getCluster() {

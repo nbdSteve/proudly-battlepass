@@ -3,6 +3,7 @@ package dev.nuer.proudly.challenges;
 import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.events.ChallengeClusterUnlockEvent;
 import dev.nuer.proudly.enable.FileManager;
+import dev.nuer.proudly.utils.CustomEventUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scheduler.BukkitTask;
@@ -11,46 +12,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cluster {
-    private int cluster;
+    private int clusterID;
     private ClusterType type;
     private List<Challenge> challenges;
     private boolean unlocked;
     private BukkitTask counterTaskId;
 
-    public Cluster(int cluster, ClusterType type) {
-        this.cluster = cluster;
+    public Cluster(int clusterID, ClusterType type) {
+        this.clusterID = clusterID;
         this.type = type;
-        challenges = new ArrayList<>();
+        this.challenges = new ArrayList<>();
         this.unlocked = false;
         loadChallengeCluster();
     }
 
     public void loadChallengeCluster() {
-        String cType = clusterType(this.type);
-        BattlePass.log.info("Loading challenges for " + cType + "cluster_" + this.cluster);
+        String cType = clusterIDType(this.type);
+        BattlePass.log.info("Loading challenges for " + cType + "cluster_" + this.clusterID);
         for (int i = 1; i <= 100; i++) {
-            if (FileManager.get(cType + "cluster_" + this.cluster).getString("challenge." + i + ".challenge-id") == null)
+            if (FileManager.get(cType + "cluster_" + this.clusterID).getString("challenges." + i + ".challenge-id") == null)
                 break;
-            YamlConfiguration config = FileManager.get(cType + "cluster_" + this.cluster);
-            Challenge challenge = new Challenge(cluster,
-                    ChallengeType.valueOf(config.getString("challenge." + i + ".type").toUpperCase()),
-                    config.getString("challenge." + i + ".challenge-id"),
-                    config.getString("challenge." + i + ".active.element"),
-                    Short.parseShort(config.getString("challenge." + i + ".active.data-value")),
-                    config.getInt("challenge." + i + ".completion-requirements.total"),
-                    config.getInt("challenge." + i + ".completion-requirements.payout"), type);
+            YamlConfiguration config = FileManager.get(cType + "cluster_" + this.clusterID);
+            Challenge challenge = new Challenge(this.clusterID,
+                    ChallengeType.valueOf(config.getString("challenges." + i + ".type").toUpperCase()),
+                    config.getString("challenges." + i + ".challenge-id"),
+                    config.getString("challenges." + i + ".active.element"),
+                    Short.parseShort(config.getString("challenges." + i + ".active.data-value")),
+                    config.getInt("challenges." + i + ".completion-requirements.total"),
+                    config.getInt("challenges." + i + ".completion-requirements.payout"), type);
             this.challenges.add(challenge);
         }
     }
 
     public void countdown() {
-        //Check to make sure that the countdown should run
-        String cType = clusterType(this.type);
+        //Get the cluster type as a string
+        String cType = clusterIDType(this.type);
+        //Check if the cluster if unlocked
         if (isUnlocked()) return;
+        //Check that the cooldown should run
         if (!FileManager.get("config").getBoolean("do-cluster-countdowns")) return;
-        if (FileManager.get(cType + "data").getInt("timers.cluster-" + this.cluster) <= 0) {
-            Bukkit.getPluginManager().callEvent(new ChallengeClusterUnlockEvent(this));
-            this.counterTaskId.cancel();
+        //See if the timer is already less than 0
+        if (FileManager.get(cType + "data").getInt("timers.cluster-" + this.clusterID) <= 0) {
+            //Fire custom event
+            setUnlocked(true);
+            //Cancel the runnable if it exists
+            if (this.counterTaskId != null) this.counterTaskId.cancel();
             return;
         }
         //Do the countdown timer
@@ -58,26 +64,26 @@ public class Cluster {
             //Check that the week is still locked
             if (unlocked) {
                 //Fire the custom event
-                Bukkit.getPluginManager().callEvent(new ChallengeClusterUnlockEvent(this));
+                CustomEventUtil.fire(new ChallengeClusterUnlockEvent(this));
                 //Cancel the task
                 this.counterTaskId.cancel();
             }
             //Store the time remaining
-            int timeRemaining = FileManager.get(cType + "data").getInt("timers.cluster-" + this.cluster) - 1;
+            int timeRemaining = FileManager.get(cType + "data").getInt("timers.cluster-" + this.clusterID) - 1;
             //Check that the time remaining is greater than 0
             if (timeRemaining >= 0) {
-                FileManager.get(cType + "data").set("timers.cluster-" + this.cluster, timeRemaining);
+                FileManager.get(cType + "data").set("timers.cluster-" + this.clusterID, timeRemaining);
                 FileManager.save(cType + "data");
             } else {
                 //Fire the custom event
-                Bukkit.getPluginManager().callEvent(new ChallengeClusterUnlockEvent(this));
+                CustomEventUtil.fire(new ChallengeClusterUnlockEvent(this));
                 //Cancel the task
                 this.counterTaskId.cancel();
             }
         }, 0L, 20L);
     }
 
-    public static String clusterType(ClusterType type) {
+    public static String clusterIDType(ClusterType type) {
         if (type.equals(ClusterType.COAL)) return "coal_";
         return "gold_";
     }
@@ -103,11 +109,11 @@ public class Cluster {
     }
 
     public int getClusterID() {
-        return cluster;
+        return clusterID;
     }
 
-    public void setCluster(int cluster) {
-        this.cluster = cluster;
+    public void setCluster(int clusterID) {
+        this.clusterID = clusterID;
     }
 
     public ClusterType getType() {

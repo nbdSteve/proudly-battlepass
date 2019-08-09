@@ -1,5 +1,6 @@
 package dev.nuer.proudly.enable;
 
+import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.Cluster;
 import dev.nuer.proudly.challenges.ClusterType;
 
@@ -16,9 +17,8 @@ public class ClusterManager {
         //Load the clusters configuration for the challenges
         for (int i = 1; i <= FileManager.get("coal_data").getInt("total-coal-challenge-clusters"); i++) {
             fileManager.add("coal_cluster_" + i, "coal-pass" + File.separator + "challenges" + File.separator + "challenge-cluster-" + i + ".yml");
-            Cluster cluster = new Cluster(i, ClusterType.COAL);
-            cluster.countdown();
-            coalClusters.put(i, cluster);
+            coalClusters.put(i, new Cluster(i, ClusterType.COAL));
+            coalClusters.get(i).countdown();
         }
     }
 
@@ -27,9 +27,8 @@ public class ClusterManager {
         //Load the clusters configuration for the challenges
         for (int i = 1; i <= FileManager.get("gold_data").getInt("total-gold-challenge-clusters"); i++) {
             fileManager.add("gold_cluster_" + i, "gold-pass" + File.separator + "challenges" + File.separator + "challenge-cluster-" + i + ".yml");
-            Cluster cluster = new Cluster(i, ClusterType.GOLD);
-            cluster.countdown();
-            goldClusters.put(i, cluster);
+            goldClusters.put(i, new Cluster(i, ClusterType.GOLD));
+            goldClusters.get(i).countdown();
         }
     }
 
