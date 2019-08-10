@@ -15,7 +15,6 @@ public class PlayerChallengeCompletionEvent extends Event implements Cancellable
     public PlayerChallengeCompletionEvent(Player player, Challenge challenge) {
         this.player = player;
         this.challenge = challenge;
-        this.challenge.setComplete(player);
     }
 
     public static HandlerList getHandlerList() {

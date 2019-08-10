@@ -21,7 +21,7 @@ public class PlayerDataManager {
         return getPlayerFile(player).get().getInt("pass-info.challenges-completed");
     }
 
-    public static boolean hasCopy(Player player) {
+    public static boolean isGold(Player player) {
         return getPlayerFile(player).get().getBoolean("pass-info.gold-pass");
     }
 }

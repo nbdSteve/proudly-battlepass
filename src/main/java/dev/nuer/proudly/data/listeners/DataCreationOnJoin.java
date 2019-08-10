@@ -21,17 +21,17 @@ public class DataCreationOnJoin implements Listener {
         PlayerDataManager.getPlayerFile(event.getPlayer());
         if (!FileManager.get("config").getBoolean("enable-welcome-message")) return;
         Bukkit.getScheduler().runTaskLater(BattlePass.instance, () -> {
-            if (PlayerDataManager.hasCopy(event.getPlayer())) {
+            if (PlayerDataManager.isGold(event.getPlayer())) {
                 MessageUtil.message("messages", "player-welcome.gold-pass", event.getPlayer(),
                         "{player}", event.getPlayer().getName(),
                         "{tier}", String.valueOf(PlayerTierManager.getTier(event.getPlayer())),
-                        "{exp}", BattlePass.df.format(PlayerPointManager.getPoints(event.getPlayer())),
+                        "{points}", BattlePass.df.format(PlayerPointManager.getPoints(event.getPlayer())),
                         "{challenges-completed}", String.valueOf(PlayerDataManager.getChallengesCompleted(event.getPlayer())));
             } else {
                 MessageUtil.message("messages", "player-welcome.coal-pass", event.getPlayer(),
                         "{player}", event.getPlayer().getName(),
                         "{tier}", String.valueOf(PlayerTierManager.getTier(event.getPlayer())),
-                        "{exp}", BattlePass.df.format(PlayerPointManager.getPoints(event.getPlayer())),
+                        "{points}", BattlePass.df.format(PlayerPointManager.getPoints(event.getPlayer())),
                         "{challenges-completed}", String.valueOf(PlayerDataManager.getChallengesCompleted(event.getPlayer())));
             }
         }, 10L);

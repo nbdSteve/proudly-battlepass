@@ -11,11 +11,11 @@ tier-up-notification:
 
 # Tier configuration
 1:
-  points-required: 0
+  points-required: 50
   rewards:
     message:
-      - '&a&lPass+&2: &7Congratulations you are now tier &e1&7.'
-      - '&7&o((Tier &e1 &7&orewards have been given to you.))'
+      - '&d&lBattlePass&5: &7Congratulations you are now tier &f1&7.'
+      - '&7&o((Tier &f1 &7&orewards have been given to you.))'
     coal:
       commands:
         - 'eco give {player} 25000'
@@ -24,11 +24,11 @@ tier-up-notification:
         - 'say {player} has received premium rewards.'
 #
 2:
-  points-required: 10
+  points-required: 100
   rewards:
     message:
-      - '&a&lPass+&2: &7Congratulations you are now tier &e2&7.'
-      - '&7&o((Tier &e1 &7&orewards have been given to you.))'
+      - '&d&lBattlePass&5: &7Congratulations you are now tier &f2&7.'
+      - '&7&o((Tier &f1 &7&orewards have been given to you.))'
     coal:
       commands:
         - 'eco give {player} 25000'

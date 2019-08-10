@@ -3,9 +3,13 @@ status:
   reward-available: '&e&lCLICK TO CLAIM'
   completed: '&a&lCOMPLETED'
 
+gui:
+  size: 9
+  name: '&7Coal challenges &b#1'
+
 challenges:
   1:
-    type: 'player_kills'
+    type: 'player_mine'
     challenge-id: 'week_1-challenge_1'
     active:
       element: ''

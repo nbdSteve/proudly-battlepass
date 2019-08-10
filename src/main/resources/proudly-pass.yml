@@ -1,10 +1,32 @@
+# BattlePass developer by Nuer for Hytheria
+# <3
+# If the cluster countdowns should run
 do-cluster-countdowns: true
 
+# If the welcome message should be sent to the player
+enable-welcome-message: true
+
+# give notification (for the receiver)
+give-notification:
+  message:
+    enabled: true
+    text:
+      - '&d&lBattlePass&5: &7Thank you for purchasing a &6gold &7copy of &dBattlePass&7.'
+  sound:
+    enabled: true
+    type: 'level_up'
+    volume: 1
+    pitch: 2
+  firework:
+    enabled: true
+
+# This message will be broadcast when a new challenge cluster is unlocked
 challenge-cluster-unlock-broadcast:
   enabled: true
   message:
-    - '2'
+    - '&d&lBattlePass&5: &7Challenge cluster &e{cluster-id} &7are now available! &b/bp&7.'
 
+# This is sent to the player when they complete a gold-pass challenge
 gold-pass:
   completion-notification:
     message:
@@ -18,7 +40,7 @@ gold-pass:
       pitch: 1
     firework:
       enabled: true
-
+# This is sent to the player when they complete a coal-pass challenge
 coal-pass:
   completion-notification:
     message:

@@ -38,9 +38,8 @@ public class Challenge {
     public void progress(Player player) {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
         String cType = getClusterTypeString();
-        BattlePass.log.info(cType);
         if (getProgress(player) + 1 >= getTotal() - 0.1) {
-            CustomEventUtil.fire(new PlayerChallengeCompletionEvent(player, this));
+            CustomEventUtil.fireSync(new PlayerChallengeCompletionEvent(player, this));
         } else {
             pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), getProgress(player) + 1);
             pfu.save();

@@ -1,0 +1,54 @@
+# -- General Messages --
+player-welcome:
+  gold-pass:
+    - '&7 '
+    - '&d&lBattlePass&5: &7Welcome &e{player}&7, here are your current &dBattlePass &7stats.'
+    - '&6 - &fTier: &b{tier}'
+    - '&6 - &fPoints: &b{points}'
+    - '&6 - &fChallenges completed: &b{challenges-completed}'
+    - '&7 '
+  coal-pass:
+    - '&7 '
+    - '&d&lBattlePass&5: &7You do not have a &6gold &7copy of &dBattlePass&7.'
+    - '&7You are currently missing out on weekly challenges and rewards for playing!'
+    - '&7Purchase your &6gold &7copy of &dBattlePass &7here: &f&nstore.example.com&7.'
+    - '&7 '
+
+tier-query:
+  - '&d&lBattlePass&5: &7You are currently tier &b{tier}&7.'
+
+points-query:
+  - '&d&lBattlePass&5: &7You currently have &b{points} point(s)&7.'
+
+challenge-query:
+  - '&d&lBattlePass&5: &7You have completed a total of &b{challenges-completed} challenge(s)&7.'
+
+# -- Pass command messages --
+permission-debug:
+  - '&d&lBattlePass&5: &fPermission Debug'
+  - '&cError! &7You do not have permission to use that.'
+  - '&6Permission required: &e{node}&7.'
+
+command-debug:
+  - '&d&lBattlePass&5: &fCommand Debug'
+  - '&cError! &7There was a problem with the command you entered, please read the reason.'
+  - '&6Reason: &e{reason}&7.'
+
+invalid-pass:
+  - '&d&lBattlePass&5: &7You cannot view that because you do not have a &6gold &7copy of &dBattlePass&7.'
+
+# -- Admin command messages --
+admin-cmd-help:
+  - '&d&lBattlePass&5&lAdmin&f: &7Check the GitHub for a detailed command list: &e&n{link}'
+
+admin-cmd-tier-manipulation:
+  - '&d&lBattlePass&5&lAdmin&f: &7Action successful, &f{player} &7is now at tier &b{tier}&7.'
+
+admin-cmd-points-manipulation:
+  - '&d&lBattlePass&5&lAdmin&f: &7Action successful, &f{player} &7now has &b{points} points&7.'
+
+admin-cmd-reload:
+  - '&d&lBattlePass&5&lAdmin&f: &7Action successful, all configuration files have been reloaded.'
+
+give-success:
+  - '&d&lBattlePass&5&lAdmin&f: &7Action successful, &f{player} &7has received a &6gold &7copy of &dBattlePass&7.'

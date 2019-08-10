@@ -7,7 +7,6 @@ import dev.nuer.proudly.challenges.Cluster;
 import dev.nuer.proudly.data.PlayerDataManager;
 import dev.nuer.proudly.enable.ClusterManager;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -37,13 +36,12 @@ public class ChallengeListener implements Listener {
                                     continue;
                             }
                         }
-                        BattlePass.log.info("running");
                         if (challenge.getProgress(event.getPlayer()) == -1) continue;
                         challenge.progress(event.getPlayer());
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getPlayer())) return;
+            if (!PlayerDataManager.isGold(event.getPlayer())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -86,7 +84,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getPlayer())) return;
+            if (!PlayerDataManager.isGold(event.getPlayer())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -121,7 +119,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getEntity().getKiller())) return;
+            if (!PlayerDataManager.isGold(event.getEntity().getKiller())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -147,7 +145,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getEntity())) return;
+            if (!PlayerDataManager.isGold(event.getEntity())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -178,7 +176,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getEntity().getKiller())) return;
+            if (!PlayerDataManager.isGold(event.getEntity().getKiller())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -209,7 +207,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getPlayer())) return;
+            if (!PlayerDataManager.isGold(event.getPlayer())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -244,7 +242,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getPlayer())) return;
+            if (!PlayerDataManager.isGold(event.getPlayer())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {
@@ -279,7 +277,7 @@ public class ChallengeListener implements Listener {
                     }
                 }
             }
-            if (!PlayerDataManager.hasCopy(event.getPlayer())) return;
+            if (!PlayerDataManager.isGold(event.getPlayer())) return;
             for (Cluster cluster : ClusterManager.goldClusters.values()) {
                 if (cluster.isUnlocked()) {
                     for (Challenge challenge : cluster.getChallenges()) {

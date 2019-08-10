@@ -9,4 +9,15 @@ website: https://nuer.dev
 commands:
   battlepass:
     usage: /<command>
-    aliases: [bp]
+    aliases: [bp, pass]
+    description: Main command for BattlePass, try `/bp help` for command help.
+  battlepass-admin:
+    usage: /<command>
+    aliases: [bpa, ppa]
+    description: BattlePass command designed for administrative use, try `/bpa help` for command help.
+  challanges:
+    usage: /<command>
+    description: Opens the challenges Gui for BattlePass.
+  tiers:
+    usage: /<command>
+    description: Opens the tiers Gui for BattlePass.

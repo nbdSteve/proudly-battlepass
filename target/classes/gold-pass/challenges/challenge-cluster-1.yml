@@ -5,7 +5,7 @@ status:
 
 challenges:
   1:
-    type: 'player_kills'
+    type: 'player_mine'
     challenge-id: 'week_1-challenge_1'
     active:
       element: ''

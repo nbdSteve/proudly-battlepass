@@ -19,7 +19,7 @@ public class PlayerTierListener implements Listener {
         //Run the commands for the coal tier
         TierCommandUtil.execute("tier_config", event.getNewPlayerTier() + ".rewards.coal.commands", event.getPlayer());
         //If they have a copy of the battlepass run gold commands
-        if (PlayerDataManager.hasCopy(event.getPlayer())) {
+        if (PlayerDataManager.isGold(event.getPlayer())) {
             TierCommandUtil.execute("tier_config", event.getNewPlayerTier() + ".rewards.gold.commands", event.getPlayer());
         }
         //Send the player a tier message

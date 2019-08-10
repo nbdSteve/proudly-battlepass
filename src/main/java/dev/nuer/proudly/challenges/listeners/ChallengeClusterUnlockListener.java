@@ -13,11 +13,9 @@ public class ChallengeClusterUnlockListener implements Listener {
     public void unlock(ChallengeClusterUnlockEvent event) {
         if (event.isCancelled()) return;
         event.getCluster().setUnlocked(true);
-        BattlePass.log.info("running_3");
         if (FileManager.get("config").getBoolean("challenge-cluster-unlock-broadcast.enabled")) {
-            BattlePass.log.info("unlocked cluster: " + event.getCluster().getClusterID());
             BroadcastUtil.broadcast("challenge-cluster-unlock-broadcast.message",
-                    "{week}", String.valueOf(event.getCluster().getClusterID()));
+                    "{cluster-id}", event.getCluster().getType().toString().toLowerCase() + "-" + event.getCluster().getClusterID());
         }
     }
 }
