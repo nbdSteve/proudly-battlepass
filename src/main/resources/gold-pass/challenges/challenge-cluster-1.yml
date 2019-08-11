@@ -35,3 +35,8 @@ challenges:
         - 'lure:1'
       item-flags:
         - 'hide_enchants'
+    rewards:
+      commands:
+        - 'say hello'
+      message:
+        - '&7hello {player}'

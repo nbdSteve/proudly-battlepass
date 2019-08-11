@@ -1,6 +1,5 @@
 package dev.nuer.proudly.challenges;
 
-import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.events.PlayerChallengeCompletionEvent;
 import dev.nuer.proudly.data.PlayerDataManager;
 import dev.nuer.proudly.data.utils.PlayerFileUtil;
@@ -54,6 +53,23 @@ public class Challenge {
         pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), -1);
         pfu.get().set("pass-info.challenges-completed", pfu.get().getInt("pass-info.challenges-completed") + 1);
         pfu.save();
+    }
+
+    public boolean isComplete(Player player) {
+        return (getProgress(player) == -1 || getProgress(player) == -2);
+    }
+
+    public void setRewardClaimed(Player player) {
+        PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
+        String cType = getClusterTypeString();
+        if (pfu.get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
+            return;
+        pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), -2);
+        pfu.save();
+    }
+
+    public boolean hasClaimedReward(Player player) {
+        return getProgress(player) == -2;
     }
 
     public String getClusterTypeString() {

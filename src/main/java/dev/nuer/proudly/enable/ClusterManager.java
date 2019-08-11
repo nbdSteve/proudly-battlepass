@@ -1,6 +1,6 @@
 package dev.nuer.proudly.enable;
 
-import dev.nuer.proudly.BattlePass;
+import dev.nuer.proudly.challenges.Challenge;
 import dev.nuer.proudly.challenges.Cluster;
 import dev.nuer.proudly.challenges.ClusterType;
 
@@ -37,12 +37,12 @@ public class ClusterManager {
         return coalClusters.get(cluster);
     }
 
-//    public static Challenge getChallenge(String challengeId) {
-//        for (ChallengeWeek weeks : weeks.values()) {
-//            for (Challenge challenge : weeks.challenges) {
-//                if (challenge.getId().equalsIgnoreCase(challengeId)) return challenge;
-//            }
-//        }
-//        return null;
-//    }
+    public static Challenge getChallenge(String challengeId) {
+        for (Cluster cluster : coalClusters.values()) {
+            for (Challenge challenge : cluster.getChallenges()) {
+                if (challenge.getID().equalsIgnoreCase(challengeId)) return challenge;
+            }
+        }
+        return null;
+    }
 }
