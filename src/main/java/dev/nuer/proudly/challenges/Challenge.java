@@ -15,8 +15,9 @@ public class Challenge {
     private int total;
     private int payout;
     private ClusterType clusterType;
+    private int configID;
 
-    public Challenge(int cluster, ChallengeType type, String ID, String element, short data, int total, int payout, ClusterType clusterType) {
+    public Challenge(int cluster, ChallengeType type, String ID, String element, short data, int total, int payout, ClusterType clusterType, int configID) {
         this.cluster = cluster;
         this.type = type;
         this.ID = ID;
@@ -25,10 +26,11 @@ public class Challenge {
         this.total = total;
         this.payout = payout;
         this.clusterType = clusterType;
+        this.configID = configID;
     }
 
     public int getProgress(Player player) {
-        String cType = getClusterTypeString();
+        String cType = getClusterTypeString() + "-";
         if (PlayerDataManager.getPlayerFile(player).get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
             return 0;
         return PlayerDataManager.getPlayerFile(player).get().getInt(cType + "challenges.cluster-" + cluster + "." + getID());
@@ -36,7 +38,7 @@ public class Challenge {
 
     public void progress(Player player) {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
-        String cType = getClusterTypeString();
+        String cType = getClusterTypeString() + "-";
         if (getProgress(player) + 1 >= getTotal() - 0.1) {
             CustomEventUtil.fireSync(new PlayerChallengeCompletionEvent(player, this));
         } else {
@@ -47,7 +49,7 @@ public class Challenge {
 
     public void setComplete(Player player) {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
-        String cType = getClusterTypeString();
+        String cType = getClusterTypeString() + "-";
         if (pfu.get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
             return;
         pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), -1);
@@ -61,7 +63,7 @@ public class Challenge {
 
     public void setRewardClaimed(Player player) {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
-        String cType = getClusterTypeString();
+        String cType = getClusterTypeString() + "-";
         if (pfu.get().get(cType + "challenges.cluster-" + cluster + "." + getID()) == null)
             return;
         pfu.get().set(cType + "challenges.cluster-" + cluster + "." + getID(), -2);
@@ -73,8 +75,8 @@ public class Challenge {
     }
 
     public String getClusterTypeString() {
-        if (this.clusterType.equals(ClusterType.COAL)) return "coal-";
-        return "gold-";
+        if (this.clusterType.equals(ClusterType.COAL)) return "coal";
+        return "gold";
     }
 
     public int getCluster() {
@@ -139,5 +141,9 @@ public class Challenge {
 
     public ClusterType getClusterType() {
         return clusterType;
+    }
+
+    public int getConfigID() {
+        return configID;
     }
 }

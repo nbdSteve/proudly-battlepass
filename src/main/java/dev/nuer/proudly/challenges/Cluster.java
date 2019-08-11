@@ -39,7 +39,7 @@ public class Cluster {
                     config.getString("challenges." + i + ".active.element"),
                     Short.parseShort(config.getString("challenges." + i + ".active.data-value")),
                     config.getInt("challenges." + i + ".completion-requirements.total"),
-                    config.getInt("challenges." + i + ".completion-requirements.payout"), type);
+                    config.getInt("challenges." + i + ".completion-requirements.payout"), type, i);
             this.challenges.add(challenge);
         }
     }

@@ -54,3 +54,120 @@ coal-pass:
       pitch: 1
     firework:
       enabled: true
+
+# Configuration for the main GUI opened with /bp
+main-menu:
+  size: 18
+  name: '&d&lBattlePass'
+  1:
+    slot: 2
+    status:
+      add-lore: false
+    material: 'nether_star'
+    data-value: 0
+    name: '&b&lTiers'
+    lore:
+      - '&7 '
+      - '&eTiers are unlocked with points&7.'
+      - '&eOnce you gain a certain amount of points&7,'
+      - '&eyou will automatically tier up&7.'
+      - '&eTiering up unlocks the loot for that tier.'
+      - '&7 '
+      - '&7&o((left-click to view the full tier list for &f[server]&7&o))'
+      - '&7 '
+      - '&7Interested in embarking on the premium &aPass+ &7journey?'
+      - '&7Purchase your copy from &f&nshop.example.com&7 for &c&l$-.00'
+    enchantments:
+      - 'lure:1'
+    item-flags:
+      - 'hide_enchants'
+    open-tiers: true
+  2:
+    slot: 4
+    status:
+      add-lore: true
+      locked-lore:
+        - '&7Player: &e{player}'
+        - '&7Current tier: &e{tier}'
+        - '&7Current points: &e{points}'
+        - '&7Challenges completed: &e{challenges-completed}'
+        - '&7 '
+        - '&7You &c&ndo not&7 have a premium copy of &aPass+&7.'
+        - '&7Some challenges and rewards are exclusive'
+        - '&7to the premium version of &aPass+&7.'
+        - '&7 '
+        - '&7Purchase a copy from the server store.'
+        - '&f&nstore.example.com&7 for &c&l$-.00'
+        - '&7 '
+        - '&4&l*&f&l*&4&l* &e&lPREMIUM &c&lLOCKED &4&l*&f&l*&4&l*'
+      unlocked-lore:
+        - '&7Player: &e{player}'
+        - '&7Current tier: &e{tier}'
+        - '&7Current points: &e{points}'
+        - '&7Challenges completed: &e{challenges-completed}'
+        - '&7 '
+        - '&7Thank you for purchasing a premium copy of &aPass+&7.'
+        - '&7Now you can tier up faster than ever before...'
+        - '&7 '
+        - '&2&l*&f&l*&2&l* &e&lPREMIUM &a&lUNLOCKED &2&l*&f&l*&2&l*'
+    material: 'ender_chest'
+    data-value: 0
+    name: '&d&lBattlePass'
+    lore:
+      - '&7 '
+    enchantments:
+      - 'lure:1'
+    item-flags:
+      - 'hide_enchants'
+  3:
+    slot: 6
+    status:
+      add-lore: false
+    material: 'coal'
+    data-value: 0
+    name: '&d&lCoal Challenges'
+    lore:
+      - '&7 '
+      - '&eChallenges are the key to getting Points.'
+      - '&eA brand new set of challenges will unlock each week,'
+      - '&eproviding you with a new source of Points.'
+      - '&7 '
+      - '&7&o((left-click to view the challenge list for &f[server]&7&o))'
+    enchantments:
+      - 'lure:1'
+    item-flags:
+      - 'hide_enchants'
+    open-coal-challenges: true
+  4:
+    slot: 7
+    status:
+      add-lore: false
+    material: 'gold_ingot'
+    data-value: 0
+    name: '&6&lGold Challenges'
+    lore:
+      - '&7 '
+      - '&eChallenges are the key to getting Points.'
+      - '&eA brand new set of challenges will unlock each week,'
+      - '&eproviding you with a new source of Points.'
+      - '&7 '
+      - '&7&o((left-click to view the challenge list for &f[server]&7&o))'
+    enchantments:
+      - 'lure:1'
+    item-flags:
+      - 'hide_enchants'
+    open-gold-challenges: true
+  5:
+    slot: 13
+    status:
+      add-lore: false
+    material: 'barrier'
+    data-value: 0
+    name: '&c&lExit'
+    lore:
+      - '&7 '
+      - '&7&o((left-click to exit this gui.))'
+      - '&7 '
+    enchantments:
+    item-flags:
+    exit-button: true

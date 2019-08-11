@@ -1,22 +1,36 @@
 status:
   in-progress: '&b&lACTIVE'
   reward-available: '&e&lCLICK TO CLAIM'
-  completed: '&a&lCOMPLETED'
+  complete: '&a&lCOMPLETED'
 
 gui:
-  size: 9
+  size: 18
   name: '&7Coal challenges &b#1'
+  exit-button:
+    enabled: true
+    slot: 13
+    material: 'barrier'
+    data-value: 0
+    name: '&c&lExit'
+    lore:
+      - '&7 '
+      - '&7&o((left-click to exit this gui.))'
+      - '&7 '
+    enchantments:
+    item-flags:
 
 challenges:
   1:
     type: 'player_mine'
-    challenge-id: 'week_1-challenge_1'
+    challenge-id: 'coal-week_1-challenge_1'
     active:
       element: ''
       data-value: 0
     completion-requirements:
       total: 10
       payout: 50
+      commands:
+        - 'eco give {player} 1000'
     gui:
       slot: 0
       item:
@@ -39,3 +53,9 @@ challenges:
         - 'lure:1'
       item-flags:
         - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say hello {player}'
+        message:
+          - '&7hello {player}'

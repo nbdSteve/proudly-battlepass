@@ -9,6 +9,7 @@ import dev.nuer.proudly.cmd.BpCmd;
 import dev.nuer.proudly.cmd.ChallengesCmd;
 import dev.nuer.proudly.cmd.TiersCmd;
 import dev.nuer.proudly.data.listeners.DataCreationOnJoin;
+import dev.nuer.proudly.guis.listener.GuiClickListener;
 import dev.nuer.proudly.points.listeners.PointTierListener;
 import dev.nuer.proudly.tiers.listeners.PlayerTierListener;
 import org.bukkit.plugin.Plugin;
@@ -35,17 +36,19 @@ public class SetupManager {
         fileManager.add("tier_gui", "tiers" + File.separator + "gui.yml");
         //Coal pass config
         fileManager.add("coal_data", "coal-pass" + File.separator + "data.yml");
+        fileManager.add("coal_config", "coal-pass" + File.separator + "config.yml");
         ClusterManager.loadCoalClusters(fileManager);
         //Gold pass config
         fileManager.add("gold_data", "gold-pass" + File.separator + "data.yml");
+        fileManager.add("gold_config", "gold-pass" + File.separator + "config.yml");
         ClusterManager.loadGoldClusters(fileManager);
     }
 
     public static void registerCommands(BattlePass instance) {
         instance.getCommand("battlepass").setExecutor(new BpCmd());
         instance.getCommand("battlepass-admin").setExecutor(new BpAdminCmd());
-        instance.getCommand("challenges").setExecutor(new ChallengesCmd());
-        instance.getCommand("tiers").setExecutor(new TiersCmd());
+//        instance.getCommand("challenges").setExecutor(new ChallengesCmd());
+//        instance.getCommand("tiers").setExecutor(new TiersCmd());
     }
 
     /**
@@ -57,7 +60,7 @@ public class SetupManager {
         PluginManager pm = instance.getServer().getPluginManager();
         pm.registerEvents(new DataCreationOnJoin(), instance);
         pm.registerEvents(new PlayerTierListener(), instance);
-//        pm.registerEvents(new GuiClickListener(), instance);
+        pm.registerEvents(new GuiClickListener(), instance);
         pm.registerEvents(new PointTierListener(), instance);
         pm.registerEvents(new ChallengeClusterUnlockListener(), instance);
         pm.registerEvents(new PlayerChallengeCompletionListener(), instance);

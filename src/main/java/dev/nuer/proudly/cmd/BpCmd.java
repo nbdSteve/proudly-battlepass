@@ -3,6 +3,7 @@ package dev.nuer.proudly.cmd;
 import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.data.PlayerDataManager;
 import dev.nuer.proudly.enable.FileManager;
+import dev.nuer.proudly.guis.menu.MainMenuGui;
 import dev.nuer.proudly.points.PlayerPointManager;
 import dev.nuer.proudly.tiers.PlayerTierManager;
 import dev.nuer.proudly.utils.MessageUtil;
@@ -16,7 +17,7 @@ public class BpCmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-//            new MainMenuGui((Player) sender).open((Player) sender);
+            new MainMenuGui((Player) sender).open((Player) sender);
         } else if (args.length == 1) {
             if (args[0].equalsIgnoreCase("t") || args[0].equalsIgnoreCase("tier")) {
                 if (sender instanceof Player) {

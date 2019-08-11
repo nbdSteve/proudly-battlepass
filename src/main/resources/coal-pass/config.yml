@@ -1,0 +1,41 @@
+status:
+  unlocked: '&2&l*&f&l*&2&l* &a&lUNLOCKED &2&l*&f&l*&2&l*'
+  locked: '&4&l*&f&l*&4&l* &c&lLOCKED &4&l*&f&l*&4&l*'
+
+gui:
+  size: 18
+  name: '&d&lChallenges'
+  1:
+    cluster-id: 1
+    slot: 0
+    material: 'book'
+    data-value: 0
+    name: '&6&lCluster #1'
+    lore:
+      - '&7 '
+      - '&eUnlocks in:'
+      - ' &f* &b{days} &7Days'
+      - ' &f* &b{hours} &7Hours'
+      - ' &f* &b{minutes} &7Minutes'
+      - ' &f* &b{seconds} &7Seconds'
+      - '&7 '
+      - '{status}'
+    enchantments:
+      - 'lure:1'
+    item-flags:
+      - 'hide_enchants'
+    open:
+      enabled: true
+      cluster-id: 1
+  2:
+    slot: 13
+    material: 'barrier'
+    data-value: 0
+    name: '&c&lExit'
+    lore:
+      - '&7 '
+      - '&7&o((left-click to exit this gui.))'
+      - '&7 '
+    enchantments:
+    item-flags:
+    exit-button: true

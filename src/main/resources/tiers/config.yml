@@ -11,7 +11,7 @@ tier-up-notification:
 
 # Tier configuration
 1:
-  points-required: 50
+  points-required: 100
   rewards:
     message:
       - '&d&lBattlePass&5: &7Congratulations you are now tier &f1&7.'
@@ -24,7 +24,7 @@ tier-up-notification:
         - 'say {player} has received premium rewards.'
 #
 2:
-  points-required: 100
+  points-required: 200
   rewards:
     message:
       - '&d&lBattlePass&5: &7Congratulations you are now tier &f2&7.'

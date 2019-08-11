@@ -56,9 +56,9 @@ public class TierMenuGui extends AbstractGui {
         ibu.replaceLorePlaceholder("{experience-name}", FileManager.get("config").getString("experience-name"));
         ibu.replaceLorePlaceholder("{tier}", String.valueOf(PlayerTierManager.getTier(player)));
         if (completed(config.getInt("gui-page-" + page + "." + i + ".tier"), PlayerTierManager.getTier(player))) {
-            ibu.replaceLorePlaceholder("{exp}", "MAX");
+            ibu.replaceLorePlaceholder("{points}", "MAX");
         } else {
-            ibu.replaceLorePlaceholder("{exp}", BattlePass.df.format(PlayerPointManager.getPoints(player)));
+            ibu.replaceLorePlaceholder("{points}", BattlePass.df.format(PlayerPointManager.getPoints(player)));
         }
         try {
             ibu.replaceLorePlaceholder("{progress-bar}",

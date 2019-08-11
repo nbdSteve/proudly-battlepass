@@ -1,5 +1,6 @@
 package dev.nuer.proudly.enable;
 
+import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.Challenge;
 import dev.nuer.proudly.challenges.Cluster;
 import dev.nuer.proudly.challenges.ClusterType;

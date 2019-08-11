@@ -4,33 +4,33 @@ import dev.nuer.proudly.enable.FileManager;
 import dev.nuer.proudly.guis.AbstractGui;
 import dev.nuer.proudly.guis.menu.MainMenuGui;
 import dev.nuer.proudly.tiers.PlayerTierManager;
-import dev.nuer.proudly.utils.ColorUtil;
-import dev.nuer.proudly.utils.ItemBuilderUtil;
-import dev.nuer.proudly.utils.TimeUtil;
+import dev.nuer.proudly.utils.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class ChallengeMenuGui extends AbstractGui {
+    private YamlConfiguration config;
 
     /**
      * Constructor the create a new Gui
      *
      * @param player Player, the person who open the gui
      */
-    public ChallengeMenuGui(Player player) {
-        super(FileManager.get("challenge_config").getInt("challenge-menu-gui.size"),
-                ColorUtil.colorize(FileManager.get("challenge_config").getString("challenge-menu-gui.name")));
-        for (int i = 0; i < FileManager.get("challenge_config").getInt("challenge-menu-gui.size"); i++) {
+    public ChallengeMenuGui(Player player, String type) {
+        super(FileManager.get(type + "_config").getInt("gui.size"),
+                ColorUtil.colorize(FileManager.get(type + "_config").getString("gui.name")));
+        config = FileManager.get(type + "_config");
+        for (int i = 0; i < config.getInt("gui.size"); i++) {
             try {
-                int id = i;
-                setItemInSlot(FileManager.get("challenge_config").getInt("challenge-menu-gui." + i + ".slot"), buildItem(i, player), player1 -> {
-                    if (FileManager.get("challenge_config").getBoolean("challenge-menu-gui." + id + ".open.enabled")) {
-                        if (FileManager.get("unlock_timers").getInt("timers.week-" + FileManager.get("challenge_config").getString("challenge-menu-gui." + id + ".week")) <= 0) {
-                            new ClusterGui(FileManager.get("challenge_config").getString("challenge-menu-gui." + id + ".open.week"), player1).open(player1);
+                int configID = i;
+                setItemInSlot(config.getInt("gui." + configID + ".slot"), buildItem(configID, player, config, type), player1 -> {
+                    if (config.getBoolean("gui." + configID + ".open.enabled")) {
+                        if (FileManager.get(type + "_data").getInt("timers.cluster-" + config.getString("gui." + configID + ".cluster-id")) <= 0) {
+                            new ClusterGui(config.getInt("gui." + configID + ".open.cluster-id"), player1, type).open(player1);
                         }
                     }
-                    if (FileManager.get("challenge_config").getBoolean("challenge-menu-gui." + id + ".exit-button")) {
+                    if (config.getBoolean("gui." + configID + ".exit-button")) {
                         new MainMenuGui(player1).open(player1);
                     }
                 });
@@ -40,37 +40,35 @@ public class ChallengeMenuGui extends AbstractGui {
         }
     }
 
-    public ItemStack buildItem(int i, Player player) {
-        YamlConfiguration config = FileManager.get("challenge_config");
+    public ItemStack buildItem(int configID, Player player, YamlConfiguration config, String type) {
         //Create the item
-        ItemBuilderUtil ibu = new ItemBuilderUtil(config.getString("challenge-menu-gui." + i + ".material"),
-                config.getString("challenge-menu-gui." + i + ".data-value"));
+        ItemBuilderUtil ibu = new ItemBuilderUtil(config.getString("gui." + configID + ".material"),
+                config.getString("gui." + configID + ".data-value"));
         //Set the item name
-        ibu.addName(ColorUtil.colorize(config.getString("challenge-menu-gui." + i + ".name")));
+        ibu.addName(ColorUtil.colorize(config.getString("gui." + configID + ".name")));
         //Add the first section of lore, replace the relevant placeholders
-        ibu.addLore(config.getStringList("challenge-menu-gui." + i + ".lore"));
+        ibu.addLore(config.getStringList("gui." + configID + ".lore"));
         ibu.replaceLorePlaceholder("{player}", player.getName());
-        ibu.replaceLorePlaceholder("{experience-name}", FileManager.get("config").getString("experience-name"));
         ibu.replaceLorePlaceholder("{tier}", String.valueOf(PlayerTierManager.getTier(player)));
-        ibu.replaceLorePlaceholder("{status}", getStatus(i));
-        TimeUtil tu = new TimeUtil(FileManager.get("unlock_timers").getInt("timers.week-" + FileManager.get("challenge_config").getString("challenge-menu-gui." + i + ".week")));
+        ibu.replaceLorePlaceholder("{status}", getStatus(configID, type));
+        TimeUtil tu = new TimeUtil(FileManager.get(type + "_data").getInt("timers.cluster-" + config.getString("gui." + configID + ".cluster-id")));
         ibu.replaceLorePlaceholder("{days}", tu.getDays());
         ibu.replaceLorePlaceholder("{hours}", tu.getHours());
         ibu.replaceLorePlaceholder("{minutes}", tu.getMinutes());
         ibu.replaceLorePlaceholder("{seconds}", tu.getSeconds());
         //Add item enchantments
-        ibu.addEnchantments(config.getStringList("challenge-menu-gui." + i + ".enchantments"));
+        ibu.addEnchantments(config.getStringList("gui." + configID + ".enchantments"));
         //Add item flags
-        ibu.addItemFlags(config.getStringList("challenge-menu-gui." + i + ".item-flags"));
+        ibu.addItemFlags(config.getStringList("gui." + configID + ".item-flags"));
         return ibu.getItem();
     }
 
-    public String getStatus(int week) {
+    public String getStatus(int clusterID, String type) {
         try {
-            if (FileManager.get("unlock_timers").getInt("timers.week-" + week) <= 0) {
-                return ColorUtil.colorize(FileManager.get("challenge_config").getString("status.unlocked"));
+            if (FileManager.get(type + "_data").getInt("timers.cluster-" + clusterID) <= 0) {
+                return ColorUtil.colorize(FileManager.get(type + "_config").getString("status.unlocked"));
             } else {
-                return ColorUtil.colorize(FileManager.get("challenge_config").getString("status.locked"));
+                return ColorUtil.colorize(FileManager.get(type + "_config").getString("status.locked"));
             }
         } catch (Exception e) {
             return "debug";
