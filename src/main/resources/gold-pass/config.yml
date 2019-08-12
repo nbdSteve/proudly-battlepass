@@ -4,7 +4,7 @@ status:
 
 gui:
   size: 18
-  name: '&d&lChallenges'
+  name: '&6&lGold Challenge Clusters'
   1:
     cluster-id: 1
     slot: 0

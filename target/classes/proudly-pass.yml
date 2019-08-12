@@ -92,24 +92,24 @@ main-menu:
         - '&7Current points: &e{points}'
         - '&7Challenges completed: &e{challenges-completed}'
         - '&7 '
-        - '&7You &c&ndo not&7 have a premium copy of &aPass+&7.'
+        - '&7You &c&ndo not&7 have a &6gold &7copy of &dBattlePass&7.'
         - '&7Some challenges and rewards are exclusive'
-        - '&7to the premium version of &aPass+&7.'
+        - '&7to the &6gold &7version of &dBattlePass&7.'
         - '&7 '
         - '&7Purchase a copy from the server store.'
         - '&f&nstore.example.com&7 for &c&l$-.00'
         - '&7 '
-        - '&4&l*&f&l*&4&l* &e&lPREMIUM &c&lLOCKED &4&l*&f&l*&4&l*'
+        - '&4&l*&f&l*&4&l* &6&lGOLD PASS &c&lLOCKED &4&l*&f&l*&4&l*'
       unlocked-lore:
         - '&7Player: &e{player}'
         - '&7Current tier: &e{tier}'
         - '&7Current points: &e{points}'
         - '&7Challenges completed: &e{challenges-completed}'
         - '&7 '
-        - '&7Thank you for purchasing a premium copy of &aPass+&7.'
+        - '&7Thank you for purchasing a &6gold &7copy of &dBattlePass&7.'
         - '&7Now you can tier up faster than ever before...'
         - '&7 '
-        - '&2&l*&f&l*&2&l* &e&lPREMIUM &a&lUNLOCKED &2&l*&f&l*&2&l*'
+        - '&2&l*&f&l*&2&l* &6&lGOLD PASS &a&lUNLOCKED &2&l*&f&l*&2&l*'
     material: 'ender_chest'
     data-value: 0
     name: '&d&lBattlePass'
@@ -125,7 +125,7 @@ main-menu:
       add-lore: false
     material: 'coal'
     data-value: 0
-    name: '&d&lCoal Challenges'
+    name: '&7&lCoal Challenges'
     lore:
       - '&7 '
       - '&eChallenges are the key to getting Points.'

@@ -45,11 +45,14 @@ public class ClusterGui extends AbstractGui {
                             TierCommandUtil.execute(type + "_cluster_" + clusterID, "challenges." + configID + ".gui.rewards.commands", player);
                             MessageUtil.message(type + "_cluster_" + clusterID, "challenges." + configID + ".gui.rewards.message", player,
                                     "{player}", player.getName());
-                            player.closeInventory();
+                            new ClusterGui(clusterID, player, type).open(player);
                         }
                     }
                 });
             } catch (Exception e) {
+                if (i == 1) {
+                    e.printStackTrace();
+                }
                 //Do nothing, Item just doesn't exist
             }
         }

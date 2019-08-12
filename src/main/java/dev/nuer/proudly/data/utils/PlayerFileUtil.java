@@ -80,8 +80,11 @@ public class PlayerFileUtil {
 
     public void setupTiers() {
         for (int i = 1; i<= FileManager.get("tier_config").getInt("max-tier"); i++) {
-            if (config.get("tiers." + i) == null) {
-                config.set("tiers." + i, 0);
+            if (config.get("tiers." + i + ".coal") == null) {
+                config.set("tiers." + i + ".coal", 0);
+            }
+            if (config.get("tiers." + i + ".gold") == null) {
+                config.set("tiers." + i + ".gold", 0);
             }
         }
     }

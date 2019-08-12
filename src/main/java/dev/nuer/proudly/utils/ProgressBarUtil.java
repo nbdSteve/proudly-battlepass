@@ -3,6 +3,7 @@ package dev.nuer.proudly.utils;
 public class ProgressBarUtil {
 
     public static String bar(double current, double total) {
+        if (total <= 0) return null;
         double percent = (current / total) * 50;
         StringBuilder bar = new StringBuilder();
         for (int i = 1; i <= 50; i++) {

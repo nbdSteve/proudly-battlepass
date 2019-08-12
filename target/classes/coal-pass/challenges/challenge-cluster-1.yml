@@ -24,7 +24,7 @@ challenges:
     type: 'player_mine'
     challenge-id: 'coal-week_1-challenge_1'
     active:
-      element: ''
+      element: 'dirt'
       data-value: 0
     completion-requirements:
       total: 10
@@ -34,13 +34,13 @@ challenges:
     gui:
       slot: 0
       item:
-        material: 'diamond_sword'
+        material: 'diamond_pickaxe'
         data-value: 0
-      name: '&cPlayer Kills'
+      name: '&cDirt Miner I'
       lore:
         - '&7 '
         - '&7Requirements:'
-        - ' &f&l* &eKill 10 players'
+        - ' &f&l* &eMine 10 dirt'
         - '&7 '
         - '&7Rewards:'
         - ' &f&l* &e50 points'

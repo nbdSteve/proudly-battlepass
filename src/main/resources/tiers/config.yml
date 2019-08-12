@@ -3,12 +3,15 @@ max-tier: 100
 gui-pages: 1
 
 adaptable-glass:
-  active: 15
-  reward-pending: yellow
-  complete: green
+  active: 14
+  reward-pending: 1
+  complete: 5
 
 status:
-
+  in-progress: '&b&lACTIVE'
+  reward-available: '&e&lCLICK TO CLAIM'
+  complete: '&a&lCOMPLETED'
+  locked: '&6&lGOLD PASS'
 
 tier-up-notification:
   sound:
@@ -21,7 +24,7 @@ tier-up-notification:
 
 # Tier configuration
 1:
-  points-required: 100
+  points-required: 50
   rewards:
     message:
       - '&d&lBattlePass&5: &7Congratulations you are now tier &f1&7.'
@@ -34,7 +37,7 @@ tier-up-notification:
         - 'say {player} has received premium rewards.'
 #
 2:
-  points-required: 200
+  points-required: 100
   rewards:
     message:
       - '&d&lBattlePass&5: &7Congratulations you are now tier &f2&7.'

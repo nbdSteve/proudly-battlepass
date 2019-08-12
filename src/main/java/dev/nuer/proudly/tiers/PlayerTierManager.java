@@ -49,18 +49,18 @@ public class PlayerTierManager {
         pfu.save();
     }
 
-    public static boolean hasClaimedReward(Player player, int tier) {
-        return PlayerDataManager.getPlayerFile(player).get().getInt("tiers." + tier) == -1;
+    public static boolean hasClaimedReward(Player player, int tier, String type) {
+        return PlayerDataManager.getPlayerFile(player).get().getInt("tiers." + tier + "." + type) == -1;
     }
 
-    public static boolean hasRewardPending(Player player, int tier) {
-        return PlayerDataManager.getPlayerFile(player).get().getInt("tiers." + tier) != -1
-                && getTier(player) > tier;
+    public static boolean hasRewardPending(Player player, int tier, String type) {
+        return PlayerDataManager.getPlayerFile(player).get().getInt("tiers." + tier + "." + type) != -1
+                && getTier(player) >= tier;
     }
 
-    public static void setClaimed(Player player, int tier) {
+    public static void setClaimed(Player player, int tier, String type) {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
-        pfu.get().set("tiers." + tier, -1);
+        pfu.get().set("tiers." + tier + "." + type, -1);
         pfu.save();
     }
 

@@ -88,12 +88,20 @@ name: '&fTiers page &b#1'
     enabled: true
     gold: false
     commands:
+      - 'say hello'
     message:
+      - 'hello {player}'
+  status:
+    enabled: true
+  progress-bar:
+    enabled: true
   material: 'diamond_sword'
   data-value: 0
   name: '&7Tier 1'
   lore:
-    - '&7 Example'
+    - '{progress-bar}'
+    - '&7 '
+    - '{status}'
   enchantments:
   item-flags:
 #
@@ -105,11 +113,17 @@ name: '&fTiers page &b#1'
     gold: false
     commands:
     message:
+  status:
+    enabled: true
+  progress-bar:
+    enabled: true
   material: 'diamond_pickaxe'
   data-value: 0
   name: '&7Tier 2'
   lore:
-    - '&7 Example'
+    - '{progress-bar}'
+    - '&7 '
+    - '{status}'
   enchantments:
   item-flags:
 #
@@ -219,6 +233,7 @@ name: '&fTiers page &b#1'
 #
 20:
   slot: 19
+  tier: 1
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -228,6 +243,7 @@ name: '&fTiers page &b#1'
 #
 21:
   slot: 20
+  tier: 2
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -237,6 +253,7 @@ name: '&fTiers page &b#1'
 #
 22:
   slot: 21
+  tier: 3
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -246,6 +263,7 @@ name: '&fTiers page &b#1'
 #
 23:
   slot: 22
+  tier: 4
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -255,6 +273,7 @@ name: '&fTiers page &b#1'
 #
 24:
   slot: 23
+  tier: 5
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -264,6 +283,7 @@ name: '&fTiers page &b#1'
 #
 25:
   slot: 24
+  tier: 6
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -273,6 +293,7 @@ name: '&fTiers page &b#1'
 #
 26:
   slot: 25
+  tier: 7
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -282,6 +303,7 @@ name: '&fTiers page &b#1'
 #
 27:
   slot: 26
+  tier: 8
   adaptable: true
   material: 'stained_glass_pane'
   data-value: 15
@@ -309,10 +331,299 @@ name: '&fTiers page &b#1'
     commands:
     message:
       - '&7 '
+  status:
+    enabled: true
+  progress-bar:
+    enabled: true
   material: 'paper'
   data-value: 0
   name: '&7Tier 1'
   lore:
+    - '{progress-bar}'
+    - '&7 '
+    - '{status}'
+  enchantments:
+  item-flags:
+#
+30:
+  slot: 29
+  tier: 2
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  status:
+    enabled: true
+  progress-bar:
+    enabled: true
+  material: 'mob_spawner'
+  data-value: 0
+  name: '&7Tier 2'
+  lore:
+    - '{progress-bar}'
+    - '&7 '
+    - '{status}'
+  enchantments:
+  item-flags:
+#
+31:
+  slot: 30
+  tier: 3
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  material: 'tripwire_hook'
+  data-value: 0
+  name: '&7Tier 3'
+  lore:
     - '&7 '
   enchantments:
   item-flags:
+#
+32:
+  slot: 31
+  tier: 4
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  material: 'paper'
+  data-value: 0
+  name: '&7Tier 4'
+  lore:
+    - '&7 '
+  enchantments:
+  item-flags:
+#
+33:
+  slot: 32
+  tier: 5
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  material: 'tripwire_hook'
+  data-value: 0
+  name: '&7Tier 5'
+  lore:
+    - '&7 '
+  enchantments:
+  item-flags:
+#
+34:
+  slot: 33
+  tier: 6
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  material: 'mob_spawner'
+  data-value: 0
+  name: '&7Tier 6'
+  lore:
+    - '&7 '
+  enchantments:
+  item-flags:
+#
+35:
+  slot: 34
+  tier: 7
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  material: 'paper'
+  data-value: 0
+  name: '&7Tier 7'
+  lore:
+    - '&7 '
+  enchantments:
+  item-flags:
+#
+36:
+  slot: 35
+  tier: 8
+  tier-item:
+    enabled: true
+    gold: true
+    commands:
+    message:
+      - '&7 '
+  material: 'mob_spawner'
+  data-value: 0
+  name: '&7Tier 8'
+  lore:
+    - '&7 '
+  enchantments:
+  item-flags:
+#
+37:
+  slot: 36
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+38:
+  slot: 37
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+39:
+  slot: 38
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+40:
+  slot: 39
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+41:
+  slot: 40
+  info-item:
+    enabled: true
+  material: 'sign'
+  data-value: 0
+  name: '&d&lBattlePass'
+  lore:
+    - '&7Player: &e{player}'
+    - '&7Current tier: &e{tier}'
+    - '&7Current points: &e{points}'
+    - '&7Challenges completed: &e{challenges-completed}'
+#
+42:
+  slot: 41
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+43:
+  slot: 42
+  next-page:
+    enabled: true
+    page: 2
+  material: 'arrow'
+  data-value: 0
+  name: '&e&l-->'
+  lore:
+    - '&7 '
+    - '&7&o((Left click to navigate to the next page.))'
+    - '&7 '
+#
+44:
+  slot: 43
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+45:
+  slot: 44
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+46:
+  slot: 45
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+47:
+  slot: 46
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+48:
+  slot: 47
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+49:
+  slot: 48
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+50:
+  slot: 49
+  exit-button:
+    enabled: true
+  material: 'barrier'
+  data-value: 0
+  name: '&c&lExit'
+  lore:
+    - '&7 '
+    - '&7&o((left-click to exit this gui.))'
+    - '&7 '
+#
+51:
+  slot: 50
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+52:
+  slot: 51
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+53:
+  slot: 52
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+54:
+  slot: 53
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '

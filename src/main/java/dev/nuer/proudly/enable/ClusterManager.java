@@ -44,6 +44,11 @@ public class ClusterManager {
                 if (challenge.getID().equalsIgnoreCase(challengeId)) return challenge;
             }
         }
+        for (Cluster cluster : goldClusters.values()) {
+            for (Challenge challenge : cluster.getChallenges()) {
+                if (challenge.getID().equalsIgnoreCase(challengeId)) return challenge;
+            }
+        }
         return null;
     }
 }
