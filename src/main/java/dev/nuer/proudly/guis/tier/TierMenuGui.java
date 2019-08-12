@@ -57,7 +57,7 @@ public class TierMenuGui extends AbstractGui {
 
     public ItemStack buildItem(int configID, Player player) {
         //Create the item
-        ItemBuilderUtil ibu = null;
+        ItemBuilderUtil ibu;
         if (config.getBoolean(configID + ".adaptable")) {
             if (PlayerTierManager.hasRewardPending(player, config.getInt(configID + ".tier"))) {
                 ibu = new ItemBuilderUtil(config.getString(configID + ".material"),

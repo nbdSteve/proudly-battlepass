@@ -216,6 +216,78 @@ name: '&fTiers page &b#1'
   name: ' '
   lore:
     - ' '
+#
+20:
+  slot: 19
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+21:
+  slot: 20
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+22:
+  slot: 21
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+23:
+  slot: 22
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+24:
+  slot: 23
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+25:
+  slot: 24
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+26:
+  slot: 25
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
+#
+27:
+  slot: 26
+  adaptable: true
+  material: 'stained_glass_pane'
+  data-value: 15
+  name: ' '
+  lore:
+    - ' '
 28:
   slot: 27
   tier-item:
@@ -228,7 +300,7 @@ name: '&fTiers page &b#1'
   enchantments:
   item-flags:
 #
-3:
+29:
   slot: 28
   tier: 1
   tier-item:
