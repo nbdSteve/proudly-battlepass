@@ -20,7 +20,6 @@ public class PlayerChallengeCompletionListener implements Listener {
         event.getChallenge().setComplete(event.getPlayer());
         //Increase the number of points the player has
         PlayerPointManager.incrementPoints(event.getPlayer(), event.getChallenge().getPayout());
-        BattlePass.log.info("fired");
         String cType = event.getChallenge().getClusterTypeString() + "-";
         //Run commands for completing the challenge
         TierCommandUtil.execute(event.getChallenge().getClusterTypeString() + "_cluster_" + event.getChallenge().getCluster(),

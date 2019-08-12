@@ -10,6 +10,8 @@ import dev.nuer.proudly.tiers.exception.ExceedMaxPlayerTierException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import javax.swing.*;
+
 public class PlayerTierManager {
 
     public static void incrementTier(Player player, int numberOfTiersToIncrement) {
@@ -44,6 +46,21 @@ public class PlayerTierManager {
         PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
         //If not, then set the players tier
         pfu.get().set("pass-info.tier", tier);
+        pfu.save();
+    }
+
+    public static boolean hasClaimedReward(Player player, int tier) {
+        return PlayerDataManager.getPlayerFile(player).get().getInt("tiers." + tier) == -1;
+    }
+
+    public static boolean hasRewardPending(Player player, int tier) {
+        return PlayerDataManager.getPlayerFile(player).get().getInt("tiers." + tier) != -1
+                && getTier(player) > tier;
+    }
+
+    public static void setClaimed(Player player, int tier) {
+        PlayerFileUtil pfu = PlayerDataManager.getPlayerFile(player);
+        pfu.get().set("tiers." + tier, -1);
         pfu.save();
     }
 

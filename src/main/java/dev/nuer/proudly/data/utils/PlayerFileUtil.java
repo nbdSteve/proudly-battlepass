@@ -4,6 +4,7 @@ import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.Challenge;
 import dev.nuer.proudly.challenges.Cluster;
 import dev.nuer.proudly.enable.ClusterManager;
+import dev.nuer.proudly.enable.FileManager;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -34,6 +35,7 @@ public class PlayerFileUtil {
         }
         setupCoalClusters();
         setupGoldClusters();
+        setupTiers();
         save();
     }
 
@@ -47,6 +49,7 @@ public class PlayerFileUtil {
         //Set defaults for the information about the players current & completed challenges
         config.createSection("coal-challenges");
         config.createSection("gold-challenges");
+        config.createSection("tiers");
         //Send a nice message
         BattlePass.log.info("Successfully created a new player-data file: " + fileName + ", actively creating / setting defaults.");
     }
@@ -71,6 +74,14 @@ public class PlayerFileUtil {
                         config.set("gold-challenges.cluster-" + cluster.getClusterID() + "." + challenge.getID(), 0);
                     }
                 }
+            }
+        }
+    }
+
+    public void setupTiers() {
+        for (int i = 1; i<= FileManager.get("tier_config").getInt("max-tier"); i++) {
+            if (config.get("tiers." + i) == null) {
+                config.set("tiers." + i, 0);
             }
         }
     }

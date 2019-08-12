@@ -1,5 +1,15 @@
 max-tier: 100
 
+gui-pages: 1
+
+adaptable-glass:
+  active: 15
+  reward-pending: yellow
+  complete: green
+
+status:
+
+
 tier-up-notification:
   sound:
     enabled: true

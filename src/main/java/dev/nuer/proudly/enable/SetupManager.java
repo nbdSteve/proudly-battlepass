@@ -6,8 +6,6 @@ import dev.nuer.proudly.challenges.listeners.ChallengeListener;
 import dev.nuer.proudly.challenges.listeners.PlayerChallengeCompletionListener;
 import dev.nuer.proudly.cmd.BpAdminCmd;
 import dev.nuer.proudly.cmd.BpCmd;
-import dev.nuer.proudly.cmd.ChallengesCmd;
-import dev.nuer.proudly.cmd.TiersCmd;
 import dev.nuer.proudly.data.listeners.DataCreationOnJoin;
 import dev.nuer.proudly.guis.listener.GuiClickListener;
 import dev.nuer.proudly.points.listeners.PointTierListener;
@@ -33,7 +31,10 @@ public class SetupManager {
         fileManager.add("messages", "messages.yml");
         //Load tiers
         fileManager.add("tier_config", "tiers" + File.separator + "config.yml");
-        fileManager.add("tier_gui", "tiers" + File.separator + "gui.yml");
+        //Add all of the gui pages to the map
+        for (int i = 1; i <= FileManager.get("tier_config").getInt("gui-pages"); i++) {
+            fileManager.add("tier_gui_page_" + i, "tiers" + File.separator + "gui" + File.separator + "page-" + i + ".yml");
+        }
         //Coal pass config
         fileManager.add("coal_data", "coal-pass" + File.separator + "data.yml");
         fileManager.add("coal_config", "coal-pass" + File.separator + "config.yml");
