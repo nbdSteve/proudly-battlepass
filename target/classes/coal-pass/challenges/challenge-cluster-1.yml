@@ -22,7 +22,7 @@ gui:
 challenges:
   1:
     type: 'player_mine'
-    challenge-id: 'coal-week_1-challenge_1'
+    challenge-id: 'coal-cluster_1-challenge_1'
     active:
       element: 'dirt'
       data-value: 0
@@ -30,7 +30,7 @@ challenges:
       total: 10
       payout: 50
       commands:
-        - 'eco give {player} 1000'
+        - 'say {player} completed mining challenge.'
     gui:
       slot: 0
       item:
@@ -56,6 +56,286 @@ challenges:
       rewards:
         enabled: true
         commands:
-          - 'say hello {player}'
+          - 'say {player} received mining challenge reward command'
         message:
-          - '&7hello {player}'
+          - '&6{player}&7, you have completed the mining challenge.'
+  #
+  2:
+    type: 'player_kills'
+    challenge-id: 'coal-cluster_1-challenge_2'
+    active:
+      element: ''
+      data-value: -1
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed kills challenge.'
+    gui:
+      slot: 1
+      item:
+        material: 'diamond_sword'
+        data-value: 0
+      name: '&cPlayer Killer I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eKill 10 players'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received kills challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the kills challenge.'
+  #
+  3:
+    type: 'player_place'
+    challenge-id: 'coal-cluster_1-challenge_3'
+    active:
+      element: 'beacon'
+      data-value: 0
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed block place challenge.'
+    gui:
+      slot: 2
+      item:
+        material: 'beacon'
+        data-value: 0
+      name: '&cBeacon Placer I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &ePlace 10 beacons'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received block place challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the beacon placer challenge.'
+  #
+  4:
+    type: 'player_deaths'
+    challenge-id: 'coal-cluster_1-challenge_4'
+    active:
+      element: ''
+      data-value: -1
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed deaths challenge.'
+    gui:
+      slot: 3
+      item:
+        material: 'feather'
+        data-value: 0
+      name: '&cDeaths I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eDie 10 times'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received deaths challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the deaths challenge.'
+  #
+  5:
+    type: 'player_kill_mob'
+    challenge-id: 'coal-cluster_1-challenge_5'
+    active:
+      element: 'blaze'
+      data-value: 0
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed mob kills challenge.'
+    gui:
+      slot: 4
+      item:
+        material: 'blaze_rod'
+        data-value: 0
+      name: '&cBlaze Killer I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eKill 10 blaze'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received mob kills challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the mob kills challenge.'
+  #
+  6:
+    type: 'player_chat'
+    challenge-id: 'coal-cluster_1-challenge_6'
+    active:
+      element: ''
+      data-value: -1
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed chat challenge.'
+    gui:
+      slot: 5
+      item:
+        material: 'paper'
+        data-value: 0
+      name: '&cChatter I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eChat 10 times'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received chat challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the chat challenge.'
+  #
+  7:
+    type: 'player_fish'
+    challenge-id: 'coal-cluster_1-challenge_7'
+    active:
+      element: ''
+      data-value: -1
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed fishing challenge.'
+    gui:
+      slot: 6
+      item:
+        material: 'fishing_rod'
+        data-value: 0
+      name: '&cFisher I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eFish 10 items'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received fishing challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the fishing challenge.'
+  #
+  8:
+    type: 'player_consume'
+    challenge-id: 'coal-cluster_1-challenge_8'
+    active:
+      element: 'cooked_beef'
+      data-value: 0
+    completion-requirements:
+      total: 10
+      payout: 50
+      commands:
+        - 'say {player} completed eating challenge.'
+    gui:
+      slot: 7
+      item:
+        material: 'cooked_beef'
+        data-value: 0
+      name: '&cBeef Eater I'
+      lore:
+        - '&7 '
+        - '&7Requirements:'
+        - ' &f&l* &eEat 10 beef'
+        - '&7 '
+        - '&7Rewards:'
+        - ' &f&l* &e50 points'
+        - '&7 '
+        - '&7Progress:'
+        - ' &f&l* {progress-bar}'
+        - '&7 '
+        - '{status}'
+      enchantments:
+        - 'lure:1'
+      item-flags:
+        - 'hide_enchants'
+      rewards:
+        enabled: true
+        commands:
+          - 'say {player} received eating challenge reward command'
+        message:
+          - '&6{player}&7, you have completed the eating challenge.'

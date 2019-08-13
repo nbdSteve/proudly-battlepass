@@ -22,7 +22,7 @@ public class GiveCmd {
                 MessageUtil.message("messages", "command-debug", (Player) sender,
                         "{reason}", "The player you tried to give gold-pass cannot be found, please review the players name.");
             } else {
-                BattlePass.log.severe("The player you tried to give Pass+ cannot be found, please review the players name.");
+                BattlePass.log.severe("The player you tried to give a gold pass to cannot be found, please review the players name.");
             }
         }
         //Permissions were not working as intended, switch to data boolean
@@ -50,6 +50,6 @@ public class GiveCmd {
         if (FileManager.get("config").getBoolean("give-notification.firework.enabled")) {
             target.getWorld().spawnEntity(target.getLocation(), EntityType.FIREWORK);
         }
-        BattlePass.log.info(target.getName() + " has received a copy of Pass+, the executor was: " + sender.getName() + ".");
+        BattlePass.log.info(target.getName() + " has received a gold copy of BattlePass, the executor was: " + sender.getName() + ".");
     }
 }

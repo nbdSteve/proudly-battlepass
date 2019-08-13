@@ -88,9 +88,9 @@ name: '&fTiers page &b#1'
     enabled: true
     gold: false
     commands:
-      - 'say hello'
+      - 'say {player} claimed coal pass tier 1 rewards'
     message:
-      - 'hello {player}'
+      - '&6{player}&7, thank you for claiming your rewards'
   status:
     enabled: true
   progress-bar:
@@ -99,7 +99,16 @@ name: '&fTiers page &b#1'
   data-value: 0
   name: '&7Tier 1'
   lore:
-    - '{progress-bar}'
+    - '&7 '
+    - '&7Requirement(s):'
+    - ' &f&l* &e50 points'
+    - '&7 '
+    - '&7Progress:'
+    - ' &f&l* &e{points}&7/&e50'
+    - ' &f&l* {progress-bar}'
+    - '&7 '
+    - '&7Rewards:'
+    - ' &f&l* &a$5,000'
     - '&7 '
     - '{status}'
   enchantments:

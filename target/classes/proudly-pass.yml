@@ -75,7 +75,7 @@ main-menu:
       - '&7 '
       - '&7&o((left-click to view the full tier list for &f[server]&7&o))'
       - '&7 '
-      - '&7Interested in embarking on the premium &aPass+ &7journey?'
+      - '&7Interested in embarking on the &6gold &dBattlePass &7journey?'
       - '&7Purchase your copy from &f&nshop.example.com&7 for &c&l$-.00'
     enchantments:
       - 'lure:1'

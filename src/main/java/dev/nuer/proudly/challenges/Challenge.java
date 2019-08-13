@@ -1,6 +1,5 @@
 package dev.nuer.proudly.challenges;
 
-import dev.nuer.proudly.BattlePass;
 import dev.nuer.proudly.challenges.events.PlayerChallengeCompletionEvent;
 import dev.nuer.proudly.data.PlayerDataManager;
 import dev.nuer.proudly.data.utils.PlayerFileUtil;

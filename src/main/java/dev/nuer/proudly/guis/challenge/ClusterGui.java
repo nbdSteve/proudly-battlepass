@@ -9,13 +9,11 @@ import dev.nuer.proudly.guis.AbstractGui;
 import dev.nuer.proudly.tiers.PlayerTierManager;
 import dev.nuer.proudly.utils.*;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class ClusterGui extends AbstractGui {
     private YamlConfiguration config;
-    private Challenge challenge;
 
     /**
      * Constructor the create a new Gui
@@ -40,6 +38,7 @@ public class ClusterGui extends AbstractGui {
                 int configID = i;
                 setItemInSlot(config.getInt("challenges." + configID + ".gui.slot"), buildItem(configID, player, config), player1 -> {
                     if (config.getBoolean("challenges." + configID + ".gui.rewards.enabled")) {
+                        Challenge challenge = ClusterManager.getChallenge(config.getString("challenges." + configID + ".challenge-id"));
                         if (challenge.isComplete(player) && !challenge.hasClaimedReward(player)) {
                             challenge.setRewardClaimed(player);
                             TierCommandUtil.execute(type + "_cluster_" + clusterID, "challenges." + configID + ".gui.rewards.commands", player);
@@ -50,9 +49,6 @@ public class ClusterGui extends AbstractGui {
                     }
                 });
             } catch (Exception e) {
-                if (i == 1) {
-                    e.printStackTrace();
-                }
                 //Do nothing, Item just doesn't exist
             }
         }
@@ -65,7 +61,7 @@ public class ClusterGui extends AbstractGui {
         ibu.addLore(config.getStringList("challenges." + configID + ".gui.lore"));
         ibu.replaceLorePlaceholder("{player}", player.getName());
         ibu.replaceLorePlaceholder("{tier}", String.valueOf(PlayerTierManager.getTier(player)));
-        challenge = ClusterManager.getChallenge(config.getString("challenges." + configID + ".challenge-id"));
+        Challenge challenge = ClusterManager.getChallenge(config.getString("challenges." + configID + ".challenge-id"));
         ibu.replaceLorePlaceholder("{status}", new Status(player, config, challenge).getString());
         try {
             ibu.replaceLorePlaceholder("{progress-bar}", ProgressBarUtil.bar(challenge.getProgress(player), challenge.getTotal()));
